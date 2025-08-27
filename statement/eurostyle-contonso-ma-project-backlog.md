@@ -708,3 +708,34 @@ For teams seeking additional challenges, the following advanced epics can be add
 ---
 
 *This backlog follows Agile best practices and can be imported into Azure DevOps, Jira, or other project management tools for team collaboration.*
+
+
+
+
+
+
+
+
+
+
+---
+
+---
+
+### Power BI → Databricks on Free Edition (S1–S2): connection steps
+1) In Databricks Free: start cluster; create Personal Access Token.  
+2) Capture Server Hostname and cluster HTTP Path (JDBC/ODBC settings).  
+3) Ensure tables/views exist in `hive_metastore` (default schema); create externals over Bronze/Silver if needed.  
+4) In Power BI Desktop: Get Data → Databricks; mode = DirectQuery (or Import for small demos).  
+5) Auth = Personal Access Token; paste Hostname + HTTP Path; pick tables; build visuals.
+
+Constraints  
+- Cluster auto-stops after ~2h idle; DirectQuery fails until restarted.  
+- Performance is limited; prefer pre-aggregation/views in Databricks; avoid heavy joins from Power BI.
+
+
++ as bien : Integration with Fabric
+Free path: Export Gold as versioned Parquet + manifest; upload/copy into Fabric Lakehouse; ingest to Delta tables via Fabric Data Pipelines.
+Paid path: Use ADLS Gen2 + Shortcuts to point Fabric Lakehouse to Gold folders; or pull via Pipelines; schedule end-to-end.
+Build a Composite Power BI model exposing both datasets through a single semantic layer.
+Publish consolidated dashboards as the "Post-Merger Analytics Suite". + integration de databricks avec fabric - explqiuer  à mieux fiare 
