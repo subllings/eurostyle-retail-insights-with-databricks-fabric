@@ -9,7 +9,7 @@ Together, the two brands now serve **over 350 000 customers** and manage a combi
 
 The merger brings opportunities but also challenges:
 - **Data fragmentation**: EuroStyle and Contoso rely on separate systems (files, ERPs, CRMs). Consolidating them into a single analytical view is essential.  
-- **Inconsistent KPIs**: GMV, AOV, )margin, and return rates are calculated differently across the two companies, leading to confusion at board level.  
+- **Inconsistent KPIs**: **GMV (Gross Merchandise Value)**, **AOV (Average Order Value)**, **margin**, and **return rates** are calculated differently across the two companies, creating confusion at the board level.
 - **Post-merger visibility gap**: Executives need to compare EuroStyle vs. Contoso performance but also see a **unified sales and customer view**.  
 - **Churn risk & cannibalization**: Overlapping product lines and customer bases may increase churn.  
 - **Slow integration process**: Without a modern data platform, analysts spend days manually stitching EuroStyle and Contoso datasets.
