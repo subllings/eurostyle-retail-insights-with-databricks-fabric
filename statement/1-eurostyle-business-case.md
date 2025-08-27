@@ -40,16 +40,56 @@ The **Chief Marketing Officer (CMO)** has tasked three specialized teams to deli
 - **Cluster Timeout**: Automatic shutdown after 2 hours of inactivity
 - **Storage**: 15GB limit for DBFS (Databricks File System)
 
+#### What You Get with Paid Versions
+Understanding the limitations helps appreciate what professional Databricks environments offer:
+
+**Databricks Standard (0.18 EUR/DBU)** & **Premium (0.51 EUR/DBU)**:
+- **Scalable Clusters**: Auto-scaling from 1 to 100+ nodes based on workload
+- **Job Scheduling**: Automated workflows, dependencies, and retries
+- **Advanced Security**: Role-based access control, audit logs, secrets management
+- **Production MLflow**: Model serving endpoints, A/B testing, model registry
+- **Collaboration**: Real-time collaboration, version control integration, shared clusters
+
+**Cost Examples (Standard Tier)**:
+- **Single Worker Cluster**: 1 DBU/hour → 0.18 EUR/hour
+- **Typical Student Setup** (1 driver + 1 worker): 2 DBU/hour → 0.36 EUR/hour
+- **Small Team Cluster** (1 driver + 2 workers): 3 DBU/hour → 0.54 EUR/hour
+- **GPU/High-Memory Cluster**: 4-8 DBU/hour → 0.72-1.44 EUR/hour
+
+**Real-world Comparison**:
+- **Free Edition**: 0 EUR but resource-limited (max 15GB RAM, 2-hour timeout)
+- **Paid Version**: 0.36-1 EUR/hour but professional capabilities and unlimited usage
+
+**Databricks Unity Catalog** (Premium+):
+- **Data Governance**: Centralized metadata, lineage tracking, data discovery
+- **Fine-grained Permissions**: Column/row-level security across all workspaces
+- **Cross-cloud Support**: Multi-cloud data mesh architectures
+
+**Learning Value**: By working within Free Edition constraints, you develop skills in resource optimization and efficient algorithm selection - highly valued in cost-conscious production environments.
+
 ### Project Adaptations
 - **Model Selection**: Focus on lightweight algorithms that run efficiently on limited resources
 - **Data Size**: Work with sample datasets or data subsets to respect memory constraints
-- **Manual Orchestration**: Use notebooks with clear execution order instead of automated pipelines
-- **Local Model Serving**: Deploy models locally or on free cloud services instead of Databricks serving
+- **Manual Orchestration**: Use notebooks with clear execution order instead of automated pipelines *(detailed implementation in backlog)*
+- **Local Model Serving**: Deploy models locally or on free cloud services instead of Databricks serving *(deployment options detailed in backlog)*
 
 ### Microsoft Fabric Considerations
 - **Free Trial**: 60-day trial period available for students
 - **Power BI**: Free version has sharing limitations, suitable for individual development
 - **Data Transfer**: Manual export/import process between Databricks and Fabric
+
+#### Microsoft Fabric Production Features
+**Fabric Capacity (Pay-as-you-go or Reserved)**:
+- **Unified Analytics**: Single platform for data engineering, warehousing, science, and BI
+- **Real-time Analytics**: Event streams, KQL databases, real-time dashboards
+- **Advanced Power BI**: Premium sharing, deployment pipelines, large datasets
+- **OneLake**: Unified data lake with automatic Delta Lake format
+- **Copilot Integration**: AI-assisted data analysis and report generation
+
+**Enterprise Features**:
+- **Workspace Management**: Multi-environment deployment (Dev/Test/Prod)
+- **Data Governance**: Sensitivity labels, data loss prevention, compliance reporting
+- **Advanced Security**: Customer-managed keys, private endpoints, conditional access
 
 ---
 
@@ -95,9 +135,9 @@ This project involves **three complementary roles**:
   - Train and compare models, track them in **MLflow**, and publish scores back into Gold.  
 
 > Collaboration is mandatory:  
->- Analysts raise questions → Engineers implement data cleaning rules.  
->- Engineers provide cleaned Silver data → Scientists use it for feature engineering.  
->- Scientists provide churn predictions → Analysts visualize them for business decision-making.  
+>- When analysts raise data quality questions, engineers implement the necessary cleaning rules to address these issues.  
+>- Once engineers provide cleaned Silver data, scientists use this validated dataset for robust feature engineering.  
+>- After scientists generate churn predictions, analysts visualize these insights to support strategic business decision-making.  
 
 
 
@@ -121,7 +161,7 @@ The project follows **Agile principles** with short, iterative sprints:
 | **Sprint 1** | 4.5 days | Bronze & First Insights     | Bronze ingestion (Delta tables with metadata), initial KPIs on raw data (GMV, AOV, orders per customer), 1-page "first look" dashboard               |
 | **Sprint 2** | 4.5 days | Silver & Business Logic     | Clean Silver tables (deduplication, normalized schema, joins), define churn logic (e.g., no order in 90 days), dashboard comparing Raw vs Silver data|
 | **Sprint 3** | 4.5 days | Gold & Features             | Gold marts (`sales_daily`, `category_perf`, `customer_360`), Executive dashboard, Customer 360 table enriched with RFM and additional features       |
-| **Sprint 4** | 4.5 days | MLflow & Fabric Integration | Train and log ML models in MLflow, batch churn scoring into Gold, export Gold → Fabric Lakehouse, Power BI dashboards (Executive + Customer Risk)    |
+| **Sprint 4** | 4.5 days | MLflow & Fabric Integration | Train and log machine learning models using MLflow, perform batch churn scoring and integrate results into Gold layer, export Gold tables to Fabric Lakehouse, create comprehensive Power BI dashboards for executive reporting and customer risk assessment |
 
 
 
@@ -152,7 +192,7 @@ Professional-grade implementations ready for production environments.
 ### Hire Me Level (Portfolio & Personal Branding)
 Career-focused deliverables that differentiate candidates in the job market.
 
-*Detailed task breakdown and platform specifications are available in the Learning Methodology guide.*
+*Detailed task breakdown and platform specifications are available in the Project Backlog.*
 
 ---
 
