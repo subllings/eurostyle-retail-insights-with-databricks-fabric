@@ -1,9 +1,36 @@
 # EuroStyle–Contoso M&A – Product Backlog (Databricks & Fabric)
 
+
+---
+
+## Platform Architecture – Free vs Paid (Databricks ↔ Microsoft Fabric)
+
+This section highlights the **architectural constraints** of the EuroStyle–Contoso M&A prototype (built in class on free tiers) versus how the same design would be implemented in an **enterprise-grade paid setup**.
+
+| Aspect | Free / Trial (Prototype in class) | Paid / Enterprise (Production-ready) |
+|--------|-----------------------------------|---------------------------------------|
+| **Landing zone** | Manual upload into Fabric Lakehouse `/Files` | ADLS Gen2 landing zone (raw/bronze/silver/gold), accessible via Shortcuts |
+| **Storage format** | Parquet files with `_SUCCESS` + `release_manifest.json` uploaded manually | Delta tables written by DLT/Jobs with atomic publish + manifest |
+| **Data contract** | Convention: `/release/gold/{table}/{date}/vX.Y.Z/` with Parquet + JSON manifest | Same pathing, but automated; schema/hash validation enforced by Jobs & Fabric Pipelines |
+| **Identity & Security** | User credentials; minimal workspace-level access | Managed Identity/Service Principals + Key Vault; RBAC in ADLS + Unity Catalog policies |
+| **Catalog / Governance** | Hive metastore ad-hoc; manual schema docs | Unity Catalog: lineage, tags (PII), fine-grained access control |
+| **Orchestration** | Manual export from Databricks, manual trigger in Fabric Pipeline | Databricks Workflows/Jobs for ETL + ML; Fabric Data Factory Pipelines scheduled or Event Grid-triggered |
+| **Integration with Fabric** | Export → manual upload → Fabric Pipeline copies Parquet into Lakehouse tables | Fabric Shortcuts to ADLS (zero-copy Direct Lake); or Fabric Pipelines copy if schema reshaping needed; Delta Sharing optional |
+| **Power BI mode** | Early sprints: DirectQuery to Databricks Bronze/Silver; Later: Direct Lake once data copied into Fabric | Direct Lake as default; fallback DirectQuery to Databricks SQL Warehouse or Import mode for snapshots |
+| **Environments** | Single shared workspace | Separate Dev/Test/Prod workspaces (Databricks + Fabric); Deployment Pipelines in Fabric |
+| **CI/CD** | None (manual steps only) | GitHub Actions/Azure DevOps for Databricks notebooks, Jobs, UC; Fabric Deployment Pipelines & APIs |
+| **Monitoring** | Manual inspection of pipelines and dashboards | Azure Monitor + Log Analytics for Databricks & Fabric; alerts on SLAs, schema drift, data quality |
+| **Security model** | Basic workspace access + Power BI Row-Level Security (RLS) | Private Endpoints, RBAC at ADLS & UC level, column/row-level masking; RLS in Power BI |
+
+---
+
 This backlog defines the learning and delivery path of the EuroStyle–Contoso M&A case,  
 structured into five sprints (0 → 4).  
 It begins with a high-level Sprint Planning Matrix (overview of DE, DA, DS roles),  
 followed by detailed Epics, Features, and User Stories with tasks and learning resources.
+
+---
+
 
 ## Sprint Planning Matrix (4.5 days per sprint)
 
@@ -411,19 +438,10 @@ As a Data Analyst, I want Power BI dashboards published through Fabric so execut
 - Deploy dashboards via Fabric pipelines.  
 
 
----
 
 
 
-## Constraints vs Viability (Free Edition)
 
-| Aspect | Free Tier Limitation | How the Solution Still Works |
-|--------|----------------------|------------------------------|
-| Databricks cluster | Auto-stops after 2h | Acceptable for demo; restart when needed |
-| Storage | No ADLS integration | Manual Parquet upload to Fabric Lakehouse |
-| Fabric capacity | Limited trial workspace | Enough for semantic model + dashboards |
-| Orchestration | No Jobs API | Manual Databricks export + Fabric Pipelines |
-| Governance | No enterprise RBAC | Simulated with Power BI RLS |
 
 ---
 
