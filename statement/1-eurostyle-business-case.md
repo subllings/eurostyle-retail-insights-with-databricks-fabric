@@ -12,7 +12,11 @@ Despite its growth, EuroStyle is facing several challenges:
 - **Customer churn risk** suspected but not measured or predicted.  
 - **Slow decision-making**: business questions take days to answer because analysts manually combine multiple files.  
 
-The **Chief Marketing Officer (CMO)** has tasked the Data & AI team to deliver a prototype of a **modern data platform** that provides both **business insights** and **predictive capabilities**.
+The **Chief Marketing Officer (CMO)** has tasked three specialized teams to deliver a prototype of a **modern data platform** that provides both **business insights** and **predictive capabilities**:
+
+- **Data Engineering Team**: Build robust data pipelines and infrastructure
+- **Data Analytics Team**: Create business intelligence and visualization solutions  
+- **Data Science Team**: Develop machine learning models for predictive analytics
 
 ---
 
@@ -176,7 +180,7 @@ Students must download the CSV files and upload them into Databricks Free Editio
 
 ## Detailed Deliverables
 
-For complete task breakdown with acceptance criteria and technical specifications, see the **[Project Backlog](./eurostyle-project-backlog.md)**.
+For complete task breakdown with acceptance criteria and technical specifications, see the **[Project Backlog](./3-eurostyle-project-backlog.md)**.
 
 The project is structured in 4 progressive levels:
 - **Must-Have**: Core 6 tasks per profile (foundation for success)
